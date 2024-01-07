@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Version: 3
+
+  Opravena chyba při přesouvání otevřeného nebo používaného souboru. Vytvořen soubor Nepresunuto.dsk aby se dalo přesouvat i po restartu počítače.
+
+  Fixed a bug when moving an open or in-use file. Created Nepresunuto.dsk file so that it can be moved even after restarting the computer.
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Version: 2
+
+  Přidána vizualizace pomocí pygame.
+
+  Added visual with pygame.
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Version: 1
+
+  První vydání
+  
+  First release
