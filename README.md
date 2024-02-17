@@ -1,5 +1,5 @@
 # Desktoper CZ
-Program v pythony který řeší problém vitruálních ploch od microsoftu kde není možné mít jiné ikonky na jiných plocháh.
+Program který řeší problém vitruálních ploch od microsoftu kde není možné mít jiné ikonky na jiných plocháh.
 
 # Nastavení
 1. Vytvořte šložky a nějak je pojmenujte (v souboru Plochy.dsk jsou nějaké návrhy).
@@ -9,7 +9,7 @@ Program v pythony který řeší problém vitruálních ploch od microsoftu kde 
 5. Teď stačí akorát zapnout soubor Desktoper.py a můžete mněnit plochy.
 
 # Desktoper EN
-A program in Python that solves the problem of virtual desktops from Microsoft where it is not possible to have other icons on other desktops.
+A program that solves the problem of virtual desktops from Microsoft where it is not possible to have other icons on other desktops.
 
 # How to set up
 1. Create folders and name them something (there are some suggestions in the Plochy.dsk file).
