@@ -1,0 +1,195 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace Desktoper
+{
+    class Program
+    {
+        static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        static List<string> nepresunuto = new List<string>();
+        static List<string> nemenitelnost = new List<string>();
+        static List<string> seznamPloch = new List<string>();
+
+        static void Main(string[] args)
+        {
+            do { 
+                seznamPloch = SeznamPlochLoad();
+                nepresunuto = NepresunuteLoad();
+                nemenitelnost = seznamPloch.Concat(new string[] { "Desktoper.py", "desktop_index.dsk", "Plochy.dsk", "Nepresunute.dsk" }).ToList();
+
+                if (seznamPloch.Count == 0)
+                {
+                    Console.WriteLine("Seznam ploch nenalezen. Přidejte plochy do souboru 'Plochy.dsk'.");
+                }
+                else
+                {
+                    int selectedPlocha = ChoosePlocha(seznamPloch);
+                    IconSwap(seznamPloch, seznamPloch[selectedPlocha]);
+                    AktIndexPlochy(selectedPlocha);
+                }
+            } while (true);
+            
+        }
+
+        static List<string> SeznamPlochLoad()
+        {
+            string plochySoubor = Path.Combine(desktopPath, "Plochy.dsk");
+            try
+            {
+                return File.ReadAllLines(plochySoubor).Select(plocha => plocha.Trim()).ToList();
+            }
+            catch (FileNotFoundException)
+            {
+                return new List<string>();
+            }
+        }
+
+        static List<string> NepresunuteLoad()
+        {
+            string soubor = Path.Combine(desktopPath, "Nepresunute.dsk");
+            try
+            {
+                return File.ReadAllLines(soubor).Select(cesta => cesta.Trim()).ToList();
+            }
+            catch (FileNotFoundException)
+            {
+                return new List<string>();
+            }
+        }
+
+        static void NepresunuteSave(List<string> seznamDvojic)
+        {
+            string soubor = Path.Combine(desktopPath, "Nepresunute.dsk");
+            File.WriteAllLines(soubor, seznamDvojic);
+        }
+
+        static int? PosledniPlocha()
+        {
+            string indexSoubor = Path.Combine(desktopPath, "desktop_index.dsk");
+            try
+            {
+                string content = File.ReadAllText(indexSoubor).Trim();
+                if (int.TryParse(content, out int index))
+                    return index;
+            }
+            catch (FileNotFoundException)
+            {
+            }
+            return null;
+        }
+
+        static void AktIndexPlochy(int branaPlocha)
+        {
+            string indexSoubor = Path.Combine(desktopPath, "desktop_index.dsk");
+            File.WriteAllText(indexSoubor, branaPlocha.ToString());
+        }
+
+        static void IconSwap(List<string> seznamPloch, string vybranaPlochaPath)
+        {
+            int? indexPlochy = PosledniPlocha();
+            string doPlocha = Path.Combine(desktopPath, seznamPloch[indexPlochy ?? 0]);
+            string zPlocha = Path.Combine(desktopPath, vybranaPlochaPath);
+
+            foreach (string file in Directory.GetDirectories(desktopPath))
+            {
+                if (!nemenitelnost.Contains(Path.GetFileName(file)))
+                {
+                    try
+                    {
+                        string cilovaCesta = Path.Combine(doPlocha, Path.GetFileName(file));
+                        Directory.Move(file, cilovaCesta);
+                    }
+                    catch
+                    {
+                        nepresunuto.Add(file);
+                        Console.WriteLine("Nepovedlo se přesunout: " + file);
+                    }
+                }
+            }
+
+            foreach (string file in Directory.GetFiles(desktopPath))
+            {
+                if (!nemenitelnost.Contains(Path.GetFileName(file)))
+                {
+                    try
+                    {
+                        string cilovaCesta = Path.Combine(doPlocha, Path.GetFileName(file));
+                        File.Move(file, cilovaCesta);
+                    }
+                    catch
+                    {
+                        nepresunuto.Add(file);
+                        Console.WriteLine("Nepovedlo se přesunout: " + file);
+                    }
+                }
+            }
+
+            foreach (string file in Directory.GetDirectories(zPlocha))
+            {
+                if (!nemenitelnost.Contains(Path.GetFileName(file)))
+                {
+                    try
+                    {
+                        string cilovaCesta = Path.Combine(desktopPath, Path.GetFileName(file));
+                        Directory.Move(file, cilovaCesta);
+                    }
+                    catch
+                    {
+                        nepresunuto.Add(file);
+                        Console.WriteLine("Nepovedlo se přesunout: " + file);
+                    }
+                }
+            }
+
+            foreach (string file in Directory.GetFiles(zPlocha))
+            {
+                if (!nemenitelnost.Contains(Path.GetFileName(file)))
+                {
+                    try
+                    {
+                        string cilovaCesta = Path.Combine(desktopPath, Path.GetFileName(file));
+                        File.Move(file, cilovaCesta);
+                    }
+                    catch
+                    {
+                        nepresunuto.Add(file);
+                        Console.WriteLine("Nepovedlo se přesunout: " + file);
+                    }
+                }
+            }
+
+            NepresunuteSave(nepresunuto);
+
+            Console.WriteLine("Ikony byly přesunuty mezi plochami. Poslední použitá plocha: " + zPlocha);
+        }
+
+        static int ChoosePlocha(List<string> seznamPloch)
+        {
+            Console.WriteLine("Seznam dostupných ploch:");
+            int selectedPlochaIndex = 0;
+
+            for (int i = 1;i <= seznamPloch.Count;i++)
+            {
+                Console.WriteLine(i + " = " + seznamPloch[i - 1]);
+            }
+
+            do
+            {
+                Console.Write("Zadej číslo plochy (1 - " + seznamPloch.Count + "): ");
+                string input = Console.ReadLine();
+                if (int.TryParse(input, out selectedPlochaIndex))
+                {
+                    selectedPlochaIndex -= 1;
+                }
+                else
+                {
+                    Console.WriteLine("Neplatné číslo plochy.");
+                }
+            } while (selectedPlochaIndex < 0 || selectedPlochaIndex >= seznamPloch.Count);
+
+            return selectedPlochaIndex;
+        }
+    }
+}
