@@ -26,7 +26,6 @@ Aplikace je napsaná ve WPF (Windows Presentation Foundation) v jazyce C#.
 
 ## Autor
 Aplikaci vytvořil **KikiZC**.  
-Pro více informací nebo zpětnou vazbu můžete navštívit [profil autora na itch.io](https://kikizc.itch.io/).
 
 ## Licence
 Aplikace je k volnému použití. Při šíření uveďte, že jejím autorem je **KikiZC**.
