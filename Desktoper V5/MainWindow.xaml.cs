@@ -26,7 +26,7 @@ namespace Desktoper_V5
             }
             catch
             {
-
+                GlobalVals.settings = GlobalVals.baseSettings;
             }
             finally 
             {
