@@ -12,7 +12,7 @@
 Aplikace je napsaná ve WPF (Windows Presentation Foundation) v jazyce C#.
 
 ## Jak začít
-1. Stáhněte si aplikaci z: [https://kikizc.itch.io/desktoper](https://kikizc.itch.io/desktoper).
+1. Stáhněte si aplikaci z release (Desktoper.Installer.zip).
 2. Ze staženého ZIP souboru spusťte **setup.exe** a postupujte podle pokynů instalátoru.
 3. Po dokončení instalace spusťte aplikaci.
 4. V záložce **Settings** si vytvořte nové "virtuální plochy".
