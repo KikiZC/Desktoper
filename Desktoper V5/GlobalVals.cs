@@ -7,11 +7,15 @@ namespace Desktoper_V5
         public static string basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Desktoper");
         public static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
+        public static double WindowWidth = 900;
+        public static double WindowHeight = 500;
+
         public static Dictionary<string, string> settings = [];
         public static Dictionary<string, string> baseSettings = new()
         {
             { "Theme", "0" },
-            { "", "" }
+            { "WindowWidth", "900" },
+            { "WindowHeight", "500" }
         };
 
         public static Dictionary<string, string[]> Themes = [];
@@ -53,6 +57,9 @@ namespace Desktoper_V5
             {"settingsCreateDesktopTextBoxBorderBrush",     ["#5F5F5F",     "#3F5F3F",       "#050F42",     "#5F5F5F",        "#5F5F5F",      "#5F5F5F",                            ]}, //32
             {"settingsCreateDesktopTextBolockForeground",   ["White",       "White",         "#03071C",     "#05a81b",        "#05a81b",      "#05a81b",                            ]}, //33
             {"settingsCreateDesktopTextBolockBackground",   ["#3B3B3B",     "#2E4E2E",       "#061459",     "#3B3B3B",        "#3B3B3B",      "#3B3B3B",                            ]}, //34
+            {"mainDonateButtonBackground",                  ["#3B3B3B",     "#2E4E2E",       "#061459",     "#3B3B3B",        "#3B3B3B",      "#3B3B3B",                            ]}, //19
+            {"mainDonateButtonForeground",                  ["White",       "White",         "#03071C",     "#05a81b",        "Red",          "Yellow",                            ]}, //20
+            {"mainDonateButtonBorderBrush",                 ["#5F5F5F",     "#3F5F3F",       "#040F2E",     "#5F5F5F",        "#5F5F5F",      "#5F5F5F",                            ]}, //21
             {"homeDesktopNameBorderBackground",             ["#00000000",   "#00000000",     "#00000000",   "#00000000",      "#00000000",    "#00000000",                          ]}
         };
         public static int selectedThemeIndex = 0;
