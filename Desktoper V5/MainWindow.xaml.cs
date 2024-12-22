@@ -21,8 +21,8 @@ namespace Desktoper_V5
         {
             try
             {
-                GlobalVals.WindowWidth = int.Parse(GlobalVals.settings["WindowWidth"]);
-                GlobalVals.WindowHeight = int.Parse(GlobalVals.settings["WindowHeight"]);
+                GlobalVals.WindowWidth = double.Parse(GlobalVals.settings["WindowWidth"]);
+                GlobalVals.WindowHeight = double.Parse(GlobalVals.settings["WindowHeight"]);
             }
             catch
             {
@@ -37,6 +37,9 @@ namespace Desktoper_V5
 
         public void OnClose(object sender, EventArgs e)
         {
+            double viska = this.ActualHeight;
+            double sirka = this.ActualWidth;
+
             Save.All();
         }
 
