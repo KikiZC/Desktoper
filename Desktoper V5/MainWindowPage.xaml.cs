@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -68,6 +69,10 @@ namespace Desktoper_V5
 
             MainContentBorder.BorderBrush = GetBrush("mainMainContentBorderBorderBrush");
             MainContentBorder.Background = GetBrush("mainMainContentBorderBackground");
+
+            DonateButton.Background = GetBrush("mainDonateButtonBackground");
+            DonateButton.Foreground = GetBrush("mainDonateButtonForeground");
+            DonateButton.BorderBrush = GetBrush("mainDonateButtonBorderBrush");
         }
 
         private static SolidColorBrush GetBrush(string typ) => new((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(GlobalVals.Themes[typ][GlobalVals.selectedThemeIndex]));
@@ -96,6 +101,11 @@ namespace Desktoper_V5
         {
             // Začne pohyb okna, když uživatel klikne na panel
             MainWindow.GetWindow(this).DragMove();
+        }
+
+        private void DonateButton_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo("https://buymeacoffee.com/KikiZC") { UseShellExecute = true });
         }
     }
 }
