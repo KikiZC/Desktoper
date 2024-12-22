@@ -29,8 +29,6 @@ namespace Desktoper_V5
 
         public void StartProgram()
         {
-            Check.CheckOrCreate();
-
             ReGenerateWindow();
 
             MainFrame.Navigate(new Home());

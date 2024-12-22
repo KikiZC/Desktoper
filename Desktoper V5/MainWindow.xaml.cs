@@ -10,6 +10,11 @@ namespace Desktoper_V5
     {
         public MainWindow()
         {
+            Check.CheckOrCreate();
+
+            Width = GlobalVals.WindowWidth;
+            Height = GlobalVals.WindowHeight;
+
             InitializeComponent();
 
             Icon = new BitmapImage(new Uri("icon.ico", UriKind.Relative));
