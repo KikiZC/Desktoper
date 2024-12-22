@@ -11,10 +11,6 @@ namespace Desktoper_V5
         public MainWindow()
         {
             Check.CheckOrCreate();
-
-            this.Width = GlobalVals.WindowWidth;
-            this.Height = GlobalVals.WindowHeight;
-
             InitializeComponent();
 
             Icon = new BitmapImage(new Uri("icon.ico", UriKind.Relative));
@@ -23,8 +19,20 @@ namespace Desktoper_V5
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Width = GlobalVals.WindowWidth;
-            this.Height = GlobalVals.WindowHeight;
+            try
+            {
+                GlobalVals.WindowWidth = int.Parse(GlobalVals.settings["WindowWidth"]);
+                GlobalVals.WindowHeight = int.Parse(GlobalVals.settings["WindowHeight"]);
+            }
+            catch
+            {
+
+            }
+            finally 
+            {
+                this.Width = GlobalVals.WindowWidth;
+                this.Height = GlobalVals.WindowHeight;
+            }
         }
 
         public void OnClose(object sender, EventArgs e)

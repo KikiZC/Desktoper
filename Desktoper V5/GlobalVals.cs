@@ -7,14 +7,15 @@ namespace Desktoper_V5
         public static string basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Desktoper");
         public static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-        public static int WindowWidth = 1900;
-        public static int WindowHeight = 1080;
+        public static int WindowWidth = 900;
+        public static int WindowHeight = 500;
 
         public static Dictionary<string, string> settings = [];
         public static Dictionary<string, string> baseSettings = new()
         {
             { "Theme", "0" },
-            { "", "" }
+            { "WindowWidth", "900" },
+            { "WindowHeight", "500" }
         };
 
         public static Dictionary<string, string[]> Themes = [];
