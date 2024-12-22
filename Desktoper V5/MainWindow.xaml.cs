@@ -37,8 +37,11 @@ namespace Desktoper_V5
 
         public void OnClose(object sender, EventArgs e)
         {
-            double viska = this.ActualHeight;
-            double sirka = this.ActualWidth;
+            GlobalVals.WindowHeight = this.ActualHeight;
+            GlobalVals.WindowWidth = this.ActualWidth;
+
+            GlobalVals.settings["WindowWidth"] = GlobalVals.WindowWidth.ToString();
+            GlobalVals.settings["WindowHeight"] = GlobalVals.WindowHeight.ToString();
 
             Save.All();
         }
