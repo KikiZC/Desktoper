@@ -27,9 +27,6 @@ Aplikace je napsaná ve WPF (Windows Presentation Foundation) v jazyce C#.
 ## Autor
 Aplikaci vytvořil **KikiZC**.  
 
-## Licence
-Aplikace je k volnému použití. Při šíření uveďte, že jejím autorem je **KikiZC**.
-
 ---
 
 Pokud máte nějaké nápady na vylepšení nebo narazíte na problém, neváhejte mě kontaktovat!
